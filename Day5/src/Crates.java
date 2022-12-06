@@ -16,21 +16,15 @@ public class Crates {
 
         System.out.println("Part 1");
         initCrates(crateConfigPath);
-        fillCrates(crateConfigPath);
         performCommands(1, inputPath);
         System.out.print("The list of top crates is: ");
-        for(Stack<Character> stack : crates) {
-            System.out.print(stack.pop());
-        }
+        crates.forEach(stack -> System.out.print(stack.pop()));
 
         System.out.println("\nPart 2");
         initCrates(crateConfigPath);
-        fillCrates(crateConfigPath);
         performCommands(2, inputPath);
         System.out.print("The list of top crates is: ");
-        for(Stack<Character> stack : crates) {
-            System.out.print(stack.pop());
-        }
+        crates.forEach(stack -> System.out.print(stack.pop()));
     }
 
     private static void performCommands(int part, Path inputPath) throws IOException {
@@ -77,9 +71,7 @@ public class Crates {
         char[] chars;
         List<String> inputs = Files.readAllLines(crateConfigPath);
         List<String> copy = inputs.subList(0, inputs.size());
-        System.out.println(copy);
         Collections.reverse(copy);
-        System.out.println(copy);
         for(String input : copy) {
             input = input
                     .replaceAll("    ", ".")
@@ -101,5 +93,6 @@ public class Crates {
         for(char c : cratesAmount.toCharArray()) {
             crates.add(new Stack<>());
         }
+        fillCrates(crateConfigPath);
     }
 }
